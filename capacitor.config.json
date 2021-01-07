@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "clone-starwars",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

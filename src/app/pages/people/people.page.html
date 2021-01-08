@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item (click)='onClick(p.id)' *ngFor="let p of (people | async)?.results">
+    <ion-item (click)='onClick(p)' *ngFor="let p of (people | async)?.results">
       <ion-label>{{p.name}}</ion-label>
       <ion-icon name='chevron-forward' slot="end"></ion-icon>
     </ion-item>

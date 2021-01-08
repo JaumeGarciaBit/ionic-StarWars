@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -13,7 +14,7 @@ export class PlanetsPage implements OnInit {
 
   planets : Observable<any>;
 
-  constructor(private as : ApiService) { }
+  constructor(private as : ApiService, private router: Router) { }
 
   ngOnInit() {
     this.planets = this.as.getPlanets$()
@@ -40,8 +41,8 @@ export class PlanetsPage implements OnInit {
     return l_split[l_split.length-2];
   }
 
-  onClick(id)
+  onClick(planet)
   {
-    console.log(id);
+    this.router.navigate([`tabs/planets/details`], {state:planet});
   }
 }

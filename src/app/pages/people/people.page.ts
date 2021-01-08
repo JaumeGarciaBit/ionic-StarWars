@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from 'src/app/shared/services/api.service';
@@ -12,7 +13,7 @@ export class PeoplePage implements OnInit {
 
   people : Observable<any>;
 
-  constructor(private as : ApiService) { }
+  constructor(private as : ApiService, private router : Router) { }
 
   ngOnInit() {
     this.people = this.as.getPeople$()
@@ -39,8 +40,8 @@ export class PeoplePage implements OnInit {
     return l_split[l_split.length-2];
   }
 
-  onClick(id)
+  onClick(people)
   {
-    console.log(id);
+    this.router.navigate([`tabs/people/details`], {state:people});
   }
 }

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text='Back' icon='chevron-back'></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{planet?.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let i of info">
+    <ion-card-content >
+      {{i}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

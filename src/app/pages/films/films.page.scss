@@ -1,0 +1,24 @@
+ion-grid
+{
+    height: 100%;
+    ion-row
+    {
+        height: 33%;
+
+        ion-col
+        {
+            height: 100%;
+
+            ion-card
+            {
+                height: 100%;
+                background: 
+                {
+                    size:contain;
+                    repeat:no-repeat;
+                    position:center;
+                };
+            }
+        }
+    }
+}

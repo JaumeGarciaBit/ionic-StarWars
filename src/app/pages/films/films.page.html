@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>films</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let f of (films | async)?.results" size='6'>
+        <ion-card type='button' class='ion-text-center' 
+        [ngStyle]="{'background-image': 'url('+f.img+')'}"
+        (click)='openDetails(f)'>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

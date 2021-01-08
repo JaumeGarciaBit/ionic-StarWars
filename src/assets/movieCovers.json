@@ -1,0 +1,39 @@
+{"data":
+    [
+        {
+            "id":"5",
+            "poster_path": "https://image.tmdb.org/t/p/original/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
+            "release_date": "2002-05-15",
+            "title": "Star Wars: Episode II - Attack of the Clones"
+        },
+        {
+            "id":"4",
+            "poster_path": "https://image.tmdb.org/t/p/original/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
+            "release_date": "1999-05-19",
+            "title": "Star Wars: Episode I - The Phantom Menace"
+        },
+        {
+            "id":"6",
+            "poster_path": "https://image.tmdb.org/t/p/original/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
+            "release_date": "2005-05-17",
+            "title": "Star Wars: Episode III - Revenge of the Sith"
+        },
+        {
+            "id":"1",
+            "poster_path": "https://image.tmdb.org/t/p/original/qPgPPzjb0pA8aImb8jWYlLRfa5o.jpg",
+            "release_date": "",
+            "title": "Star Wars: Episode IV - A New Hope Project 4K77"
+        },
+        {
+            "id":"3",
+            "poster_path": "https://image.tmdb.org/t/p/original/wc3v1oVlliq7IEtK5ltludonLmf.jpg",
+            "release_date": "1983-05-25",
+            "title": "Star Wars: Episode VI - Return of the Jedi Project 4K83"
+        },
+        {   "id":"2",
+            "poster_path": "https://image.tmdb.org/t/p/original/7BuH8itoSrLExs2YZSsM01Qk2no.jpg",
+            "release_date": "1980-05-20",
+            "title": "The Empire Strikes Back"
+        }
+    ]
+}

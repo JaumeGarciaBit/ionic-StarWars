@@ -34,8 +34,8 @@ export class FavoriteService {
   }
 
   async isFavorite(filmId){
-    let result: any = await this.getAllFavoriteFilms();
-    return result && result?.indexOf(filmId)>=0;
+    let l_result: any = await this.getAllFavoriteFilms();
+    return l_result && l_result?.indexOf(filmId)>=0;
   }
 
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService{
 
-  private _url : string = "https://swapi.dev/api/";
+  private _url : string = "http://swapi.tech/api/";
 
   constructor(private http : HttpClient) {}
 
@@ -37,7 +37,7 @@ export class ApiService{
     return this.http.get(this._url+"planets/");
   }
 
-  getPlanetsById$(id): Observable<any>
+  getPlanetById$(id): Observable<any>
   {
     return this.http.get(this._url+"planets/"+id)
   }

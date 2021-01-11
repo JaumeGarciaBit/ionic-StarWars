@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-people-details',
@@ -7,17 +11,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PeopleDetailsPage implements OnInit {
 
-  people: any;
+  routeResolveData: any;
+  people: Observable<any>;
   info = [];
 
-  constructor() { }
+  constructor(private as : ApiService, private route : ActivatedRoute) { }
 
   ngOnInit() 
   {
-    this.people = history.state;
+    if(this.route && this.route.data){
+  
+      const promiseObservable = this.route.data;    
 
-    Object.keys(this.people).forEach((k) =>
-    {
-      this.info.push(`${k}: ${this.people[k]}`);
-    })  }
+      if(promiseObservable){
+
+        promiseObservable.subscribe(promiseValue =>{
+          const dataObservable = promiseValue['items'];
+          if(dataObservable){
+            dataObservable.subscribe(observableValue =>{
+              const pageData: any = observableValue;
+              if(pageData){
+                this.routeResolveData = pageData;
+              }
+            });
+          }else {
+            console.warn('No dataObservable coming from Route Resolver promiseObservable');
+          }
+        });
+      } else {
+        console.warn('No promiseObservable coming from Route Resolver data');
+      }
+    } else {
+      console.warn('No data coming from Route Resolver');
+    }
+
+    
+    let l_state = history.state;
+    this.people = this.as.getPeopleById$(l_state.id)
+      .pipe
+      (
+        map((p:any) => 
+        {
+          Object.keys(p.result.properties).forEach((k) =>
+          {
+            this.info.push(`${k}: ${p.result.properties[k]}`);
+          })  
+          return p;
+        })
+      );
+  }
 }

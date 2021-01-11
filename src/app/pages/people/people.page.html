@@ -5,6 +5,13 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="!routeResolveData" >
+    <div style="height: 500px; margin-top:50%; padding: 10px;  text-align: center;">
+      <ion-spinner></ion-spinner>
+      <p style> Loading </p>
+    </div>
+  </ng-container>
+  
   <ion-list>
     <ion-item (click)='onClick(p)' *ngFor="let p of (people | async)?.results">
       <ion-label>{{p.name}}</ion-label>

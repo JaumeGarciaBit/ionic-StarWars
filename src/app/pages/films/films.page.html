@@ -5,6 +5,13 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ng-container *ngIf="!routeResolveData" >
+    <div style="height: 500px; padding: 10px; margin-top: 50%;  text-align: center;">
+      <ion-spinner></ion-spinner>
+      <p style> Loading </p>
+    </div>
+  </ng-container>
+
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let f of (films | async)?.results" size='6'>

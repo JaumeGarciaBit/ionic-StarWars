@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-planet-details',
@@ -7,18 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanetDetailsPage implements OnInit {
 
-  planet: any;
+  planet: Observable<any>;
   info = [];
 
-  constructor() { }
+  constructor(private as : ApiService) { }
 
-  ngOnInit() 
-  {
-    this.planet = history.state;
 
-    Object.keys(this.planet).forEach((k) =>
+    ngOnInit() 
     {
-      this.info.push(`${k}: ${this.planet[k]}`);
-    });
-  }
+      let l_state = history.state;
+      this.planet = this.as.getPlanetById$(l_state.id)
+        .pipe
+        (
+          map((p:any) => 
+          {
+            Object.keys(p.result.properties).forEach((k) =>
+            {
+              this.info.push(`${k}: ${p.result.properties[k]}`);
+            })  
+            return p;
+          })
+        );
+    }
 }

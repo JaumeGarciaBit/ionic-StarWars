@@ -16,7 +16,7 @@ export class FilmDetailsPage implements OnInit {
   async ngOnInit() 
   {
     this.film = history.state;
-    this.isFavorite = await this.fs.isFavorite(this.film.id);
+    this.isFavorite = await this.fs.isFavorite(this.film.properties.id);
 
   }
 
@@ -24,12 +24,12 @@ export class FilmDetailsPage implements OnInit {
   {
     if(fav)
     {
-      await this.fs.favoriteFilmById(this.film.id)
+      await this.fs.favoriteFilmById(this.film.properties.id)
       this.isFavorite = true;
     }
     else
     {
-      this.fs.removefavoriteById(this.film.id);
+      this.fs.removefavoriteById(this.film.properties.id);
       this.isFavorite = false;
     }
   }

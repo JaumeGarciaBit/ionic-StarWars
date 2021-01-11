@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NonBlockingResolver } from '../../shared/services/non-blocking.resolver';
 
 import { PeopleDetailsPage } from './people-details.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PeopleDetailsPage
+    component: PeopleDetailsPage, resolve:{items:NonBlockingResolver}
   }
 ];
 

@@ -3,11 +3,17 @@
     <ion-buttons slot="start">
       <ion-back-button text='Back' icon='chevron-back'></ion-back-button>
     </ion-buttons>
-    <ion-title>{{people?.title}}</ion-title>
+    <ion-title>{{(people | async)?.result.properties.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="!routeResolveData" >
+    <div style="height: 500px; margin-top:50%; padding: 10px;  text-align: center;">
+      <ion-spinner></ion-spinner>
+      <p style> Loading </p>
+    </div>
+  </ng-container>
   <ion-card *ngFor="let i of info">
     <ion-card-content >
       {{i}}

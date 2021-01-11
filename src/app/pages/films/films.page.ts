@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,12 +12,38 @@ import { FilmsService } from '../../shared/services/films.service';
   styleUrls: ['./films.page.scss'],
 })
 export class FilmsPage implements OnInit {
-
+  routeResolveData:any;
   films : Observable<any>;
 
-  constructor(private router : Router, private fs : FilmsService, private as : ApiService) { }
+  constructor(private route:ActivatedRoute, private router : Router, private fs : FilmsService, private as : ApiService) { }
 
   ngOnInit() {
+    if(this.route && this.route.data){
+  
+      const promiseObservable = this.route.data;    
+
+      if(promiseObservable){
+
+        promiseObservable.subscribe(promiseValue =>{
+          const dataObservable = promiseValue['items'];
+          if(dataObservable){
+            dataObservable.subscribe(observableValue =>{
+              const pageData: any = observableValue;
+              if(pageData){
+                this.routeResolveData = pageData;
+              }
+            });
+          }else {
+            console.warn('No dataObservable coming from Route Resolver promiseObservable');
+          }
+        });
+      } else {
+        console.warn('No promiseObservable coming from Route Resolver data');
+      }
+    } else {
+      console.warn('No data coming from Route Resolver');
+    }
+
     this.films = this.as.getFilms$()
       .pipe
       (
@@ -27,8 +53,8 @@ export class FilmsPage implements OnInit {
           (
             e => 
             {
-              e.id = this.getIdFromUrl(e.url);
-              e.img = this.fs.getDataById(e.id).poster_path;
+              e.properties.id = this.getIdFromUrl(e.properties.url);
+              e.img = this.fs.getDataById(e.properties.id).poster_path;
               return e;
             }
           )
@@ -45,6 +71,6 @@ export class FilmsPage implements OnInit {
   getIdFromUrl(value)
   {
     let l_split = value.split('/');
-    return l_split[l_split.length-2];
+    return l_split[l_split.length-1];
   }
 }
